@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #000;
+            margin: 0;
+        }
+        
+        .clock {
+            position: relative;
+            width: 300px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: black;
+        }
+
+        .hand {
+            position: absolute;
+            width: 35%;
+            left: 50px;
+            height: 1px;
+            background-color: white;
+            top: 45%;
+            transform-origin: 95%;
+            transform: rotate(90deg);
+            transition: transform 0.05s cubic-bezier(0.4, 2.3, 0.3, 1);
+            z-index: 1;
+        }
+
+        .hour {
+            height: 7px;
+            width: 20%; 
+            left: 93px;
+            z-index: 1;
+        }
+
+        .minute {
+            height: 4px;
+            z-index: 1;
+        }
+
+        .second {
+            height: 3px;
+            background-color: red;
+            z-index: 1;
+        }
+
+        .center {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background-color: white;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+        }
+
+        .tick {
+            position: absolute;
+            width: 4px;
+            height: 330px;
+            background-color: white;
+            top: 50%;
+            left: 50%;
+            transform-origin: center;
+            transform: translate(-50%, -50%) rotate(0deg);
+        }
+
+        .tick1 {
+            position: absolute;
+            width: 2px;
+            height: 310px;
+            background-color: white;
+            top: 50%;
+            left: 50%;
+            transform-origin: center;
+            transform: translate(-50%, -50%) rotate(0deg);
+        }
+
+        .tick2 {
+            position: absolute;
+            width: 2px;
+            height: 310px;
+            background-color: white;
+            top: 50%;
+            left: 50%;
+            transform-origin: center;
+            transform: translate(-50%, -50%) rotate(0deg);
+        }
+        
+        .tick3 {
+            position: absolute;
+            width: 2px;
+            height: 310px;
+            background-color: white;
+            top: 50%;
+            left: 50%;
+            transform-origin: center;
+            transform: translate(-50%, -50%) rotate(0deg);
+        }
+
+        .tick4 {
+            position: absolute;
+            width: 2px;
+            height: 210px;
+            background-color: white;
+            top: 50%;
+            left: 50%;
+            transform-origin: center;
+            transform: translate(-50%, -50%) rotate(0deg);
+            z-index: 1;
+        }
+
+        .tick5 {
+            position: absolute;
+            width: 2px;
+            height: 210px;
+            background-color: white;
+            top: 50%;
+            left: 50%;
+            transform-origin: center;
+            transform: translate(-50%, -50%) rotate(0deg);
+            z-index: 1;
+        }
+
+        .tick6 {
+            position: absolute;
+            width: 2px;
+            height: 210px;
+            background-color: white;
+            top: 50%;
+            left: 50%;
+            transform-origin: center;
+            transform: translate(-50%, -50%) rotate(0deg);
+            z-index: 1;
+        }
+        
+        .tick7 {
+            position: absolute;
+            width: 2px;
+            height: 210px;
+            background-color: white;
+            top: 50%;
+            left: 50%;
+            transform-origin: center;
+            transform: translate(-50%, -50%) rotate(0deg);
+            z-index: 1;
+        }
+
+        .circle {
+            position: absolute;
+            display: flex;
+            width: 290px;
+            height: 290px;
+            border-radius: 50%;
+            background-color: #000;
+            z-index: 1;
+        }
+
+        .circle1 {
+            position: absolute;
+            display: flex;
+            top: -80px;
+            left: 55px;
+            width: 190px;
+            height: 190px;
+            border-radius: 50%;
+            background-color: #000;
+            z-index: 1;
+        }
+
+        .count a {
+            display: flex;
+            left: 18px;
+            position: relative;
+            color: aliceblue;
+            font-size: 25px;
+            z-index: 1;
+        }
+
+        .count c {
+            display: flex;
+            top: 30px;
+            text-decoration: none;
+            left: 34px;
+            position: relative;
+            color: aliceblue;
+            font-size: 25px;
+            z-index: 1;
+        }
+        
+        .count d {
+            display: flex;
+            left: 80px;
+            top: 53px;
+            position: relative;
+            color: aliceblue;
+            font-size: 25px;
+            z-index: 1;
+        }
+
+        .count e {
+            display: flex;
+            left: 143px;
+            top: 41px;
+            position: relative;
+            color: aliceblue;
+            font-size: 25px;
+            z-index: 1;
+        }
+
+        .count f {
+            display: flex;
+            left: 205px;
+            top: -3px;
+            position: relative;
+            color: aliceblue;
+            font-size: 25px;
+            z-index: 1;
+        }
+
+        .count g {
+            display: flex;
+            left: 250px;
+            top: -80px;
+            position: relative;
+            color: aliceblue;
+            font-size: 25px;
+            z-index: 1;
+        }
+
+        .count h {
+            display: flex;
+            left: 269px;
+            top: -170px;
+            position: relative;
+            color: aliceblue;
+            font-size: 25px;
+            z-index: 1;
+        }
+
+        .count j {
+            display: flex;
+            left: 253px;
+            top: -260px;
+            position: relative;
+            color: aliceblue;
+            font-size: 25px;
+            z-index: 1;
+        }
+
+        .count k {
+            display: flex;
+            left: 206px;
+            top: -335px;
+            position: relative;
+            color: aliceblue;
+            font-size: 25px;
+            z-index: 1;
+        }
+
+        .count l {
+            display: flex;
+            left: 28px;
+            top: -316px;
+            position: relative;
+            color: aliceblue;
+            font-size: 25px;
+            z-index: 1;
+        }
+
+        .count m {
+            display: flex;
+            left: 75px;
+            top: -395px;
+            position: relative;
+            color: aliceblue;
+            font-size: 25px;
+            z-index: 1;
+        }
+
+        .count n {
+            display: flex;
+            left: 135px;
+            top: -440px;
+            position: relative;
+            color: aliceblue;
+            font-size: 25px;
+            z-index: 1;
+        }
+
+        .count-M a {
+            display: flex;
+            left: 65px;
+            top: 0px;
+            position: absolute;
+            color: aliceblue;
+            font-size: 25px;
+            z-index: 1;
+        }
+
+        .count-M c {
+            display: flex;
+            left: 75px;
+            top: 36px;
+            text-decoration: none;
+            position: absolute;
+            color: aliceblue;
+            font-size: 25px;
+            z-index: 1;
+        }
+        
+        .count-M d {
+            display: flex;
+            left: 102px;
+            top: 62px;
+            position: absolute;
+            color: aliceblue;
+            font-size: 25px;
+            z-index: 1;
+        }
+
+        .count-M e {
+            display: flex;
+            left: 137px;
+            top: 77px;
+            position: absolute;
+            color: aliceblue;
+            font-size: 25px;
+            z-index: 1;
+        }
+
+        .count-M f {
+            display: flex;
+            left: 177px;
+            top: 65px;
+            position: absolute;
+            color: aliceblue;
+            font-size: 25px;
+            z-index: 1;
+        }
+
+        .count-M g {
+            display: flex;
+            left: 200px;
+            top: 35px;
+            position: absolute;
+            color: aliceblue;
+            font-size: 25px;
+            z-index: 1;
+        }
+
+        .count-M h {
+            display: flex;
+            left: 210px;
+            top: 0px;
+            position: absolute;
+            color: aliceblue;
+            font-size: 25px;
+            z-index: 1;
+        }
+
+        .count-M j {
+            display: flex;
+            left: 200px;
+            top: -36px;
+            position: absolute;
+            color: aliceblue;
+            font-size: 25px;
+            z-index: 1;
+        }
+
+        .count-M k {
+            display: flex;
+            left: 175px;
+            top: -61px;
+            position: absolute;
+            color: aliceblue;
+            font-size: 25px;
+            z-index: 1;
+        }
+
+        .count-M l {
+            display: flex;
+            left: 100px;
+            top: -63px;
+            position: absolute;
+            color: aliceblue;
+            font-size: 25px;
+            z-index: 1;
+        }
+
+        .count-M m {
+            display: flex;
+            left: 75px;
+            top: -389px;
+            position: relative;
+            color: aliceblue;
+            font-size: 25px;
+            z-index: 1;
+        }
+
+        .count-M n {
+            display: flex;
+            left: 135px;
+            top: -75px;
+            position: absolute;
+            color: aliceblue;
+            font-size: 25px;
+            z-index: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="circle"></div>
+    <div class="clock">
+        <div class="count">
+            <a>9</a>
+            <c>8</c>
+            <d>7</d>
+            <e>6</e>
+            <f>5</f>
+            <g>4</g>
+            <h>3</h>
+            <j>2</j>
+            <k>1</k>
+            <l>10</l>
+            <m>11</m>
+            <n>12</n>
+        </div>
+        <!-- Ticks for clock -->
+
+        <div class="tick" style="transform: translate(-50%, -50%) rotate(0deg);"></div>
+        <div class="tick" style="transform: translate(-50%, -50%) rotate(30deg);"></div>
+        <div class="tick" style="transform: translate(-50%, -50%) rotate(60deg);"></div>
+        <div class="tick" style="transform: translate(-50%, -50%) rotate(90deg);"></div>
+        <div class="tick" style="transform: translate(-50%, -50%) rotate(120deg);"></div>
+        <div class="tick" style="transform: translate(-50%, -50%) rotate(150deg);"></div>
+        <div class="tick" style="transform: translate(-50%, -50%) rotate(180deg);"></div>
+        <div class="tick" style="transform: translate(-50%, -50%) rotate(210deg);"></div>
+        <div class="tick" style="transform: translate(-50%, -50%) rotate(240deg);"></div>
+        <div class="tick" style="transform: translate(-50%, -50%) rotate(270deg);"></div>
+        <div class="tick" style="transform: translate(-50%, -50%) rotate(300deg);"></div>
+        <div class="tick" style="transform: translate(-50%, -50%) rotate(330deg);"></div>
+
+        <div class="tick1" style="transform: translate(-50%, -50%) rotate(5deg);"></div>
+        <div class="tick1" style="transform: translate(-50%, -50%) rotate(35deg);"></div>
+        <div class="tick1" style="transform: translate(-50%, -50%) rotate(65deg);"></div>
+        <div class="tick1" style="transform: translate(-50%, -50%) rotate(95deg);"></div>
+        <div class="tick1" style="transform: translate(-50%, -50%) rotate(125deg);"></div>
+
+        <div class="tick1" style="transform: translate(-50%, -50%) rotate(155deg);"></div>
+        <div class="tick1" style="transform: translate(-50%, -50%) rotate(190deg);"></div>
+        <div class="tick1" style="transform: translate(-50%, -50%) rotate(220deg);"></div>
+        <div class="tick1" style="transform: translate(-50%, -50%) rotate(250deg);"></div>
+        <div class="tick1" style="transform: translate(-50%, -50%) rotate(280deg);"></div>
+        <div class="tick1" style="transform: translate(-50%, -50%) rotate(310deg);"></div>
+        <div class="tick1" style="transform: translate(-50%, -50%) rotate(340deg);"></div>
+
+        <div class="tick2" style="transform: translate(-50%, -50%) rotate(15deg);"></div>
+        <div class="tick2" style="transform: translate(-50%, -50%) rotate(45deg);"></div>
+        <div class="tick2" style="transform: translate(-50%, -50%) rotate(75deg);"></div>
+        <div class="tick2" style="transform: translate(-50%, -50%) rotate(105deg);"></div>
+        <div class="tick2" style="transform: translate(-50%, -50%) rotate(135deg);"></div>
+        <div class="tick2" style="transform: translate(-50%, -50%) rotate(165deg);"></div>
+
+        <div class="tick2" style="transform: translate(-50%, -50%) rotate(110deg);"></div>
+        <div class="tick2" style="transform: translate(-50%, -50%) rotate(230deg);"></div>
+        <div class="tick2" style="transform: translate(-50%, -50%) rotate(260deg);"></div>
+        <div class="tick2" style="transform: translate(-50%, -50%) rotate(290deg);"></div>
+        <div class="tick2" style="transform: translate(-50%, -50%) rotate(320deg);"></div>
+        <div class="tick2" style="transform: translate(-50%, -50%) rotate(350deg);"></div>
+
+        <div class="tick3" style="transform: translate(-50%, -50%) rotate(20deg);"></div>
+        <div class="tick3" style="transform: translate(-50%, -50%) rotate(55deg);"></div>
+        <div class="tick3" style="transform: translate(-50%, -50%) rotate(85deg);"></div>
+        <div class="tick3" style="transform: translate(-50%, -50%) rotate(115deg);"></div>
+        <div class="tick3" style="transform: translate(-50%, -50%) rotate(145deg);"></div>
+        <div class="tick3" style="transform: translate(-50%, -50%) rotate(175deg);"></div>
+        <div class="tick3" style="transform: translate(-50%, -50%) rotate(205deg);"></div>
+        
+        <div class="tick4" style="transform: translate(-50%, -50%) rotate(0deg);"></div>
+        <div class="tick4" style="transform: translate(-50%, -50%) rotate(30deg);"></div>
+        <div class="tick4" style="transform: translate(-50%, -50%) rotate(60deg);"></div>
+        <div class="tick4" style="transform: translate(-50%, -50%) rotate(90deg);"></div>
+        <div class="tick4" style="transform: translate(-50%, -50%) rotate(120deg);"></div>
+        <div class="tick4" style="transform: translate(-50%, -50%) rotate(150deg);"></div>
+        <div class="tick4" style="transform: translate(-50%, -50%) rotate(180deg);"></div>
+        <div class="tick4" style="transform: translate(-50%, -50%) rotate(210deg);"></div>
+        <div class="tick4" style="transform: translate(-50%, -50%) rotate(240deg);"></div>
+        <div class="tick4" style="transform: translate(-50%, -50%) rotate(270deg);"></div>
+        <div class="tick4" style="transform: translate(-50%, -50%) rotate(300deg);"></div>
+        <div class="tick4" style="transform: translate(-50%, -50%) rotate(330deg);"></div>
+
+        <div class="tick5" style="transform: translate(-50%, -50%) rotate(5deg);"></div>
+        <div class="tick5" style="transform: translate(-50%, -50%) rotate(35deg);"></div>
+        <div class="tick5" style="transform: translate(-50%, -50%) rotate(65deg);"></div>
+        <div class="tick5" style="transform: translate(-50%, -50%) rotate(95deg);"></div>
+        <div class="tick5" style="transform: translate(-50%, -50%) rotate(125deg);"></div>
+
+        <div class="tick5" style="transform: translate(-50%, -50%) rotate(155deg);"></div>
+        <div class="tick5" style="transform: translate(-50%, -50%) rotate(190deg);"></div>
+        <div class="tick5" style="transform: translate(-50%, -50%) rotate(220deg);"></div>
+        <div class="tick5" style="transform: translate(-50%, -50%) rotate(250deg);"></div>
+        <div class="tick5" style="transform: translate(-50%, -50%) rotate(280deg);"></div>
+        <div class="tick5" style="transform: translate(-50%, -50%) rotate(310deg);"></div>
+        <div class="tick5" style="transform: translate(-50%, -50%) rotate(340deg);"></div>
+
+        <div class="tick6" style="transform: translate(-50%, -50%) rotate(15deg);"></div>
+        <div class="tick6" style="transform: translate(-50%, -50%) rotate(45deg);"></div>
+        <div class="tick6" style="transform: translate(-50%, -50%) rotate(75deg);"></div>
+        <div class="tick6" style="transform: translate(-50%, -50%) rotate(105deg);"></div>
+        <div class="tick6" style="transform: translate(-50%, -50%) rotate(135deg);"></div>
+        <div class="tick6" style="transform: translate(-50%, -50%) rotate(165deg);"></div>
+
+        <div class="tick6" style="transform: translate(-50%, -50%) rotate(110deg);"></div>
+        <div class="tick6" style="transform: translate(-50%, -50%) rotate(230deg);"></div>
+        <div class="tick6" style="transform: translate(-50%, -50%) rotate(260deg);"></div>
+        <div class="tick6" style="transform: translate(-50%, -50%) rotate(290deg);"></div>
+        <div class="tick6" style="transform: translate(-50%, -50%) rotate(320deg);"></div>
+        <div class="tick6" style="transform: translate(-50%, -50%) rotate(350deg);"></div>
+        <div class="tick7" style="transform: translate(-50%, -50%) rotate(20deg);"></div>
+        <div class="tick7" style="transform: translate(-50%, -50%) rotate(55deg);"></div>
+        <div class="tick7" style="transform: translate(-50%, -50%) rotate(85deg);"></div>
+        <div class="tick7" style="transform: translate(-50%, -50%) rotate(115deg);"></div>
+        <div class="tick7" style="transform: translate(-50%, -50%) rotate(145deg);"></div>
+        <div class="tick7" style="transform: translate(-50%, -50%) rotate(175deg);"></div>
+        <div class="tick7" style="transform: translate(-50%, -50%) rotate(205deg);"></div>
+        <div class="circle1"></div>
+        <div class="count-M">
+            <a>45</a>
+            <c>40</c>
+            <d>35</d>
+            <e>30</e>
+            <f>25</f>
+            <g>20</g>
+            <h>15</h>
+            <j>10</j>
+            <k>05</k>
+            <l>55</l>
+            <m>50</m>
+            <n>00</n>
+        </div>
+        <div class="hand hour" id="hour-hand"></div>
+        <div class="hand minute" id="minute-hand"></div>
+        <div class="hand second" id="second-hand"></div>
+        <div class="center"></div>  
+    </div>
+    
+
+    <script>
+        function setClock() {
+            const hourHand = document.getElementById('hour-hand');
+            const minuteHand = document.getElementById('minute-hand');
+            const secondHand = document.getElementById('second-hand');
+
+            const currentTime = new Date();
+            const seconds = currentTime.getSeconds();
+            const minutes = currentTime.getMinutes();
+            const hours = currentTime.getHours();
+
+            const secondsRatio = seconds / 60;
+            const minutesRatio = (secondsRatio + minutes) / 60;
+            const hoursRatio = (minutesRatio + hours) / 12;
+
+            setRotation(secondHand, secondsRatio);
+            setRotation(minuteHand, minutesRatio);
+            setRotation(hourHand, hoursRatio);
+        }
+
+        function setRotation(element, rotationRatio) {
+            element.style.transform = `rotate(${rotationRatio * 360}deg)`;
+        }
+
+        setInterval(setClock, 1000);
+        setClock();
+    </script>
+</body>
+
+</html>
